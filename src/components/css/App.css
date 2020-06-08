@@ -1,0 +1,39 @@
+.App {
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 5vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.App-navigators-container{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+}
+
+.App-navigators-item{
+  padding-right: 45px;
+  padding-left: 45px;
+  color: white;
+}
+
+.App-link {
+  color: white;
+}
+.App-home {
+}
+
+.App-edit {
+}
+
+.App-horizontal-elm {
+}
+
+.App-pad-horizontal {
+}
+
