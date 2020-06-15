@@ -1,28 +1,19 @@
-.EditInvitation-img {
-  text-align: center;
-  position: relative;
-}
+@import "Invitation.css";
 
-.EditInvitation-imgbackground {
-  background-image: url(../../seattlekkitasamir.jpg);
-  background-color: #cccccc;
-  height: 800px;
-  width: 700px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: relative;
-  flex-direction: row;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.EditInvitation-text {
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.EditInvitation-textarea-header {
+  background-color: transparent;
   color: white;
+  text-align: center;
+  width: 100%;
+  border-color: white;
+  border-radius: 10px;
 }
-
+.EditInvitation-textarea-body {
+  background-color: transparent;
+  color: white;
+  text-align: center;
+  width: 100%;
+  height: 100px;
+  border-color: white;
+  border-radius: 20px;
+}
