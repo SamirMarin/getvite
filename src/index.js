@@ -7,7 +7,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import reducer from './reducers'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
-import { addInvitationHeader } from './actions'
+import { addInvitation } from './actions'
 import { BrowserRouter } from 'react-router-dom'
 
 
@@ -29,7 +29,18 @@ const store = createStore(
   )
 )
 
-store.dispatch(addInvitationHeader({ invitationHeader: "You are Invited" }))
+const random_web_photo = "https://i.pinimg.com/originals/e3/de/50/e3de50b67837b2d583719ee4655075ad.jpg"
+const computer_photo = "/static/media/seattlekkitasamir.17abd868.jpg"
+store.dispatch(
+  addInvitation( 
+    { 
+      invitation: { 
+        header: "You are Invited yes",
+        body: "this is the body",
+        photo: computer_photo,
+        //photo: "url('/static/media/seattlekkitasamir.17abd868.jpg')",
+      } 
+    }))
 
 ReactDOM.render(
   <React.StrictMode>
