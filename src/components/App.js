@@ -30,7 +30,7 @@ class App extends Component {
              <Route exact path="/" component={Invitation}/>
           </Switch>
           <Switch>
-             <Route exact path="/edit" component={EditInvitation}/>
+             <Route exact path="/edit" component={Invitation}/>
           </Switch>
       </div>
     );

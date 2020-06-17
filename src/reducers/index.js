@@ -1,38 +1,72 @@
 import { combineReducers } from 'redux'
 import {
   ADD_INVITATION,
-  ADD_INVITATION_HEADER,
-  ADD_INVITATION_BODY,
   ADD_INVITATION_PHOTO,
+  ADD_INVITATION_TEXT,
+  ADD_INVITATION_TEXT_TEXT,
+  ADD_INVITATION_TEXT_POSITION,
+  ADD_INVITATION_TEXT_FONTSIZE,
 } from '../actions'
 
 function invitation (state={}, action) {
+  const { textId, invitationText, invitationTextPosition, invitationTextFontSize } = action
   switch (action.type) {
     case ADD_INVITATION: 
       const { invitation } = action
       return {
         ...state,
-        'header': invitation.header,
-        'body': invitation.body,
         'photo': invitation.photo
-      }
-    case ADD_INVITATION_HEADER:
-      const { invitationHeader } = action
-      return {
-        ...state,
-        'header': invitationHeader
-      }
-    case ADD_INVITATION_BODY:
-      const { invitationBody } = action
-      return {
-        ...state,
-        'body': invitationBody
       }
     case ADD_INVITATION_PHOTO:
       const { invitationPhoto } = action
       return {
         ...state,
         'photo': invitationPhoto
+      }
+    case ADD_INVITATION_TEXT:
+      return {
+        ...state,
+        'text': {
+          ...state['text'],
+          [textId]: {
+            'text': invitationText,
+            position: invitationTextPosition,
+            fontSize: invitationTextFontSize
+          }
+        }
+      }
+      case ADD_INVITATION_TEXT_TEXT:
+      return {
+        ...state,
+        'text': {
+          ...state['text'],
+          [textId]: {
+            ...state['text'][textId],
+            'text': invitationText
+          }
+        }
+      }
+      case ADD_INVITATION_TEXT_POSITION:
+      return {
+        ...state,
+        'text': {
+          ...state['text'],
+          [textId]: {
+            ...state['text'][textId],
+            position: invitationTextPosition
+          }
+        }
+      }
+      case ADD_INVITATION_TEXT_FONTSIZE:
+      return {
+        ...state,
+        'text': {
+          ...state['text'],
+          [textId]: {
+            ...state['text'][textId],
+            fontSize: invitationTextFontSize
+          }
+        }
       }
     default:
       return {
@@ -42,6 +76,7 @@ function invitation (state={}, action) {
       }
   }
 }
+
 
 export default combineReducers({
   invitation,
