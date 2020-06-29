@@ -24,4 +24,25 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
+  cursor: pointer;
+}
+
+.Invitation-maketext {
+  text-align: right;
+  color: white;
+}
+
+.Invitation-orderlist {
+  list-style-type: none;
+}
+
+.Invitation-addbox {
+  font-size: 30px;
+  cursor: pointer;
+}
+
+.Invitation-textarea-body {
+  text-align: center;
+  width: 100%;
+  height: 50px;
 }

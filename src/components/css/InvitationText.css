@@ -1,0 +1,16 @@
+@import "Invitation.css";
+@import "EditInvitation.css";
+
+
+.InvitationText-box {
+  text-align: center;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+.InvitationText-container {
+  display: flex;
+  flex-direction: row;
+}
