@@ -8,5 +8,15 @@ services:
       - 3000:3000
     working_dir: /app
     volumes:
-      - ./:/app
+      - ./getvite_app:/app
+    stdin_open: true
+
+  api:
+    build: getvite_api/.
+    command: sh -c "flask run"
+    ports:
+      - 5000:5000
+    working_dir: /api
+    volumes:
+      - ./getvite_api:/api
     stdin_open: true
