@@ -9,6 +9,10 @@ to start the app locally run:
 
 `docker-compose up -d`
 
+if new libraries where added to api run:
+
+`docker-compose up -d --build`
+
 to take a look at the logs:
 
 `docker-compose logs -f`
@@ -16,3 +20,7 @@ to take a look at the logs:
 to tear the containers down
 
 `docker-compose down`
+
+to tear down the database named volumes with containers
+
+`docker-compose down --volumes`
