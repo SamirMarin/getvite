@@ -8,5 +8,44 @@ services:
       - 3000:3000
     working_dir: /app
     volumes:
-      - ./:/app
+      - ./getvite_app:/app
     stdin_open: true
+
+  api:
+    build: getvite_api/.
+    command: sh -c "flask run"
+    ports:
+      - 5000:5000
+    working_dir: /api
+    volumes:
+      - ./getvite_api:/api
+    stdin_open: true
+
+  croach_node_1:
+    container_name: croach_node_1
+    image: cockroachdb/cockroach:latest
+    volumes:
+      - getvite_croachdb_data_1:/cockroach/cockroach-data
+    command: start --insecure
+    ports:
+      - 26257:26257
+      - 8080:8080
+
+  croach_node_2:
+    container_name: croach_node_2
+    image: cockroachdb/cockroach:latest
+    volumes:
+      - getvite_croachdb_data_2:/cockroach/cockroach-data
+    command: start --insecure --join croach_node_1
+
+  croach_node_3:
+    container_name: croach_node_3
+    image: cockroachdb/cockroach:latest
+    volumes:
+      - getvite_croachdb_data_3:/cockroach/cockroach-data
+    command: start --insecure --join croach_node_1,croach_node_2
+
+volumes:
+  getvite_croachdb_data_1:
+  getvite_croachdb_data_2:
+  getvite_croachdb_data_3:

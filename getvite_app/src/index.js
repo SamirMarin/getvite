@@ -9,6 +9,7 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { addInvitation } from './actions'
 import { BrowserRouter } from 'react-router-dom'
+import * as Api from './utils/api'
 
 
 const logger = store => next => action => {
@@ -31,16 +32,23 @@ const store = createStore(
 
 const random_web_photo = "https://i.pinimg.com/originals/e3/de/50/e3de50b67837b2d583719ee4655075ad.jpg"
 const computer_photo = "/static/media/seattlekkitasamir.17abd868.jpg"
-store.dispatch(
-  addInvitation( 
-    { 
-      invitation: { 
-        header: "You are Invited yes",
-        body: "this is the body",
-        photo: computer_photo,
-        //photo: "url('/static/media/seattlekkitasamir.17abd868.jpg')",
-      } 
-    }))
+const user = "nair.nikkita@gmail.com"
+const user2 = "marin.samir@gmail.com"
+Api.getInvitation(user)
+  .then((invitation) => {
+    if(invitation.user == user){
+      invitation['photo'] = invitation.photo
+      store.dispatch(
+        addInvitation(
+          {
+            invitation
+          }))
+    } else {
+      throw "user does not match"
+    }
+  })
+  .catch((error) => console.log(error))
+
 
 ReactDOM.render(
   <React.StrictMode>
