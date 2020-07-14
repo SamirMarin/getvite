@@ -5,12 +5,19 @@ import './css/Invitation.css';
 import { addInvitationText } from '../actions'
 import InvitationText from './InvitationText';
 import { RiAddBoxLine, RiSaveLine, RiEditBoxLine } from 'react-icons/ri'
+import * as Api from '../utils/api'
 
 class Invitation extends Component {
   state = {
     edit: false
   }
   handleMakeNewText(id, position, fontSize) {
+    Api.getInvitation("marin.samir@gmail.com")
+      .then((invitation) => {
+        console.log(invitation)
+      })
+      .catch((error) => console.log(error))
+
     this.props.addInvitationText({ textId: id, invitationText: 'new text', invitationTextPosition: position, invitationTextFontSize: fontSize })
   }
   handleEditInvitation() {

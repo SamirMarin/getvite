@@ -24,3 +24,7 @@ to tear the containers down
 to tear down the database named volumes with containers
 
 `docker-compose down --volumes`
+
+to connect to cockroach sql
+
+`docker exec -it croach_node_1 cockroach sql --insecure`

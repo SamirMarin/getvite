@@ -1,2 +1,5 @@
 flask
-psycopg2-binary
+sqlalchemy
+sqlalchemy-cockroachdb
+psycopg2
+flask-cors
