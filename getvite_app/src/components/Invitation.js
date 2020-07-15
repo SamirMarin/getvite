@@ -12,12 +12,6 @@ class Invitation extends Component {
     edit: false
   }
   handleMakeNewText(id, position, fontSize) {
-    Api.getInvitation("marin.samir@gmail.com")
-      .then((invitation) => {
-        console.log(invitation)
-      })
-      .catch((error) => console.log(error))
-
     this.props.addInvitationText({ textId: id, invitationText: 'new text', invitationTextPosition: position, invitationTextFontSize: fontSize })
   }
   handleEditInvitation() {
