@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Invitation from './Invitation'
-import EditInvitation from './EditInvitation'
 import './css/App.css';
 import { Route, Link, Switch } from 'react-router-dom'
 
@@ -19,18 +18,9 @@ class App extends Component {
              <div className="App-navigators-item"> info </div>
              <div className="App-navigators-item"> rsvp </div>
             </div>
-            <div>
-             <Link
-               to="/edit"
-               className="App-link"
-             >Edit</Link>
-            </div>
          </header>
           <Switch>
              <Route exact path="/" component={Invitation}/>
-          </Switch>
-          <Switch>
-             <Route exact path="/edit" component={Invitation}/>
           </Switch>
       </div>
     );
