@@ -14,6 +14,21 @@ class Invitation extends Component {
   handleMakeNewText(id, position, fontSize) {
     this.props.addInvitationText({ textId: id, invitationText: 'new text', invitationTextPosition: position, invitationTextFontSize: fontSize })
   }
+  handleSaveInvitation(texts) {
+    const user = "nair.nikkita@gmail.com"
+    Api.saveInvitationText(texts, user)
+      .then((response) => {
+        if(response.status == 200){
+          const newEditState = !this.state.edit
+          this.setState(state => ({
+            ...this.state,
+            edit: newEditState
+          }))
+        } else{
+          console.log("Error Saving to DB")
+        }
+      })
+  }
   handleEditInvitation() {
     const newEditState = !this.state.edit
     this.setState(state => ({
@@ -34,7 +49,7 @@ class Invitation extends Component {
              > 
              <RiSaveLine
                className="Invitation-addbox"
-               onClick={(event => this.handleEditInvitation())}
+               onClick={(event => this.handleSaveInvitation(this.props.textObjects))}
               />
              </div>
             <div
@@ -79,6 +94,7 @@ function mapStateToProps({ invitation }, props ) {
     photo: invitation.photo,
     text: invitation.text ? Object.keys(invitation.text) : [],
     numberText: invitation.text ? Object.keys(invitation.text).length : 0,
+    textObjects: invitation.text ? Object.values(invitation.text) : [],
   }
 }
 

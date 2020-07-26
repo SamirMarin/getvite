@@ -12,12 +12,12 @@ CREATE TABLE IF NOT EXISTS invitations (
 );
 
 CREATE TABLE IF NOT EXISTS invitation_text (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   invitation_admin_user STRING REFERENCES invitations(admin_user) ON DELETE CASCADE, 
-  text_id STRING,
+  text_id INT,
   text STRING,
   text_position INT,
-  font_size STRING
+  font_size STRING,
+  PRIMARY KEY (invitation_admin_user, text_id)
 );
 
 INSERT INTO invitations(admin_user, photo_url) VALUES ('nair.nikkita@gmail.com', '/static/media/seattlekkitasamir.17abd868.jpg'), ('marin.samir@gmail.com', 'https://i.pinimg.com/originals/e3/de/50/e3de50b67837b2d583719ee4655075ad.jpg');
