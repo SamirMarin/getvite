@@ -7,8 +7,10 @@ import {
   addInvitationTextText, 
   addInvitationTextPosition,
   addInvitationTextFontSize,
+  deleteInvitationTextbox,
 } from '../actions'
 import { GoArrowDown, GoArrowUp, GoEye, GoEyeClosed } from 'react-icons/go'
+import { MdDeleteForever } from 'react-icons/md'
 
 class InvitationText extends Component {
   state = {
@@ -37,6 +39,13 @@ class InvitationText extends Component {
       previewText: !this.state.previewText
     }))
   }
+  handleDeleteTextbox(id){
+    var doubleCheck = true
+
+    if (doubleCheck){
+      this.props.deleteInvitationTextbox( { textId: id, isDeleted: true } )
+    }
+  }
   render() {
     return (
       <div className="Invitation-text"
@@ -62,6 +71,11 @@ class InvitationText extends Component {
            onClick={(event) => this.handleChangePostion(this.props.textId, this.props.text.position - 1 )}
           />
           <div className="InvitationText-container">
+            <div>
+              <MdDeleteForever
+                onClick={(event => this.handleDeleteTextbox(this.props.textId))}
+              />
+            </div>
             <textarea 
               value={ this.props.text.text }
               className="EditInvitation-textarea-body"
@@ -102,6 +116,7 @@ function mapDispatchToProps( dispatch ){
     addInvitationTextText: (data) => dispatch(addInvitationTextText(data)),
     addInvitationTextPosition: (data) => dispatch(addInvitationTextPosition(data)),
     addInvitationTextFontSize: (data) => dispatch(addInvitationTextFontSize(data)),
+    deleteInvitationTextbox: (data) => dispatch(deleteInvitationTextbox(data)),
   }
 
 }
