@@ -12,7 +12,7 @@ class Invitations:
         self.sessionmaker = dbconnection.sessionmaker
 
     def get_invitation_by_admin_user(self, session, user):
-        invitation_text_query_array = session.query(InvitationText).filter(Invitation.admin_user==user).all()
+        invitation_text_query_array = session.query(InvitationText).filter(InvitationText.invitation_admin_user==user).all()
         size = len(invitation_text_query_array)
         invitation_text = [None] * size
         for invitation_text_row in invitation_text_query_array:
