@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Invitation from './Invitation'
+import LoginForm from './LoginForm'
 import './css/App.css';
 import { Route, Link, Switch } from 'react-router-dom'
 
@@ -21,6 +22,8 @@ class App extends Component {
          </header>
           <Switch>
              <Route exact path="/" component={Invitation}/>
+             <Route exact path="/login" render={() => <LoginForm issuer='https://${yourOktaDomain}/oauth2/default' />}/>
+
           </Switch>
       </div>
     );
