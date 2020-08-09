@@ -9,6 +9,7 @@ import {
   addInvitationTextFontSize,
 } from '../actions'
 import { GoArrowDown, GoArrowUp, GoEye, GoEyeClosed } from 'react-icons/go'
+import { MdDeleteForever } from 'react-icons/md'
 
 class InvitationText extends Component {
   state = {
@@ -62,6 +63,11 @@ class InvitationText extends Component {
            onClick={(event) => this.handleChangePostion(this.props.textId, this.props.text.position - 1 )}
           />
           <div className="InvitationText-container">
+            <div>
+              <MdDeleteForever>
+
+              </MdDeleteForever>
+            </div>
             <textarea 
               value={ this.props.text.text }
               className="EditInvitation-textarea-body"
