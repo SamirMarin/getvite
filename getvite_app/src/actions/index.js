@@ -1,5 +1,6 @@
 export const ADD_INVITATION = 'ADD_INVITATION'
 export const ADD_INVITATION_PHOTO = 'ADD_INVITATION_PHOTO'
+export const ADD_INVITATION_USER = 'ADD_INVITATION_USER'
 export const ADD_INVITATION_TEXT = 'ADD_INVITATION_TEXT'
 export const ADD_INVITATION_TEXT_TEXT = 'ADD_INVITATION_TEXT_TEXT'
 export const ADD_INVITATION_TEXT_POSITION = 'ADD_INVITATION_TEXT_POSITION'
@@ -17,6 +18,14 @@ export function addInvitationPhoto ({ invitationPhoto }) {
   return {
     type: ADD_INVITATION_PHOTO,
     invitationPhoto,
+  }
+}
+
+export function addInvitationUser ({ username, isAdmin }) {
+  return {
+    type: ADD_INVITATION_USER,
+    username,
+    isAdmin,
   }
 }
 

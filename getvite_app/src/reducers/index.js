@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import {
   ADD_INVITATION,
   ADD_INVITATION_PHOTO,
+  ADD_INVITATION_USER,
   ADD_INVITATION_TEXT,
   ADD_INVITATION_TEXT_TEXT,
   ADD_INVITATION_TEXT_POSITION,
@@ -22,6 +23,15 @@ function invitation (state={}, action) {
       return {
         ...state,
         'photo': invitationPhoto
+      }
+    case ADD_INVITATION_USER:
+      const { username, isAdmin } = action
+      return {
+        ...state,
+        'user': {
+          username: username,
+          isAdmin: isAdmin
+        }
       }
     case ADD_INVITATION_TEXT:
       return {
