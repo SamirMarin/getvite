@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App';
+import AppWithRouterAccess from './components/AppWithRouterAccess'
 import * as serviceWorker from './serviceWorker';
 import { createStore, applyMiddleware, compose } from 'redux'
 import reducer from './reducers'
@@ -36,12 +37,12 @@ const computer_photo = "/static/media/seattlekkitasamir.17abd868.jpg"
 const user = "nair.nikkita@gmail.com"
 const user2 = "marin.samir@gmail.com"
 
-store.dispatch(fetchInvitation(user))
+//store.dispatch(fetchInvitation(user))
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter><App /></BrowserRouter>
+      <BrowserRouter><AppWithRouterAccess /></BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')

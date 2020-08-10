@@ -1,5 +1,5 @@
 import * as Api from './api'
-import { addInvitation, addInvitationText } from '../actions'
+import { addInvitation, addInvitationText, addInvitationUser } from '../actions'
 
 export const fetchInvitation = (admin_user) => dispatch => (
   Api
@@ -7,6 +7,7 @@ export const fetchInvitation = (admin_user) => dispatch => (
   .then((invitation) => {
     if(invitation.user == admin_user){
       dispatch(addInvitation({ invitation }))
+      dispatch(addInvitationUser({ username: admin_user, isAdmin: true }))
       let count = 0
       invitation.text.forEach(function(text_attributes){
         dispatch(addInvitationText(

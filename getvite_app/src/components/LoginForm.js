@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import OktaAuth from '@okta/okta-auth-js';
 import { withOktaAuth } from '@okta/okta-react';
 import './css/LoginForm.css';
+import { fetchInvitation } from '../utils/apiController'
+import { connect } from 'react-redux'
 
-export default withOktaAuth(class LoginForm extends Component {
+class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -13,10 +15,6 @@ export default withOktaAuth(class LoginForm extends Component {
     };
 
     this.oktaAuth = new OktaAuth({ issuer: props.issuer });
-
-    this.handleSubmit = this.handleSignIn.bind(this);
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
 
   handleSignIn(event) {
@@ -53,7 +51,6 @@ export default withOktaAuth(class LoginForm extends Component {
     return (
       <div className="LoginForm-main">
         <form 
-          onSubmit={this.handleSubmit}
         >
         <div>
           <label>
@@ -61,7 +58,7 @@ export default withOktaAuth(class LoginForm extends Component {
             className="LoginForm-user"
             id="username" type="text"
             value={this.state.username}
-            onChange={this.handleUsernameChange}
+            onChange={(event => this.handleUsernameChange(event))}
           />
         </label>
         <label>
@@ -69,7 +66,7 @@ export default withOktaAuth(class LoginForm extends Component {
             className="LoginForm-pass"
             id="password" type="password"
             value={this.state.password}
-            onChange={this.handlePasswordChange} 
+            onChange={(event => this.handlePasswordChange(event))} 
           />
         </label>
           <div
@@ -83,4 +80,5 @@ export default withOktaAuth(class LoginForm extends Component {
       </div>
     );
   }
-});
+};
+export default connect()(withOktaAuth(LoginForm))
