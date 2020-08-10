@@ -15,7 +15,7 @@ class Invitation extends Component {
     this.props.addInvitationText({ textId: id, invitationText: 'new text', invitationTextPosition: position, invitationTextFontSize: fontSize })
   }
   handleSaveInvitation(texts) {
-    const user = "nair.nikkita@gmail.com"
+    const user = this.props.username
     Api.saveInvitationText(texts, user)
       .then((response) => {
         if(response.status == 200){
@@ -92,6 +92,7 @@ class Invitation extends Component {
 function mapStateToProps({ invitation }, props ) {
   return {
     photo: invitation.photo,
+    username: invitation.user ? invitation.user.username: '',
     text: invitation.text ? Object.keys(invitation.text) : [],
     numberText: invitation.text ? Object.keys(invitation.text).length : 0,
     textObjects: invitation.text ? Object.values(invitation.text) : [],
