@@ -14,7 +14,9 @@ class App extends Component {
   componentDidMount(){
     this.props.authService.getUser()
       .then(user => {
-        this.props.dispatch(fetchInvitation(user.preferred_username))
+        if (user) {
+          this.props.dispatch(fetchInvitation(user.preferred_username))
+        }
       })
   }
   render() {
