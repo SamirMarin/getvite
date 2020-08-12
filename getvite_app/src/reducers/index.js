@@ -6,6 +6,7 @@ import {
   ADD_INVITATION_TEXT_TEXT,
   ADD_INVITATION_TEXT_POSITION,
   ADD_INVITATION_TEXT_FONTSIZE,
+  DELETE_INVITATION_TEXTBOX,
 } from '../actions'
 
 function invitation (state={}, action) {
@@ -67,6 +68,12 @@ function invitation (state={}, action) {
             fontSize: invitationTextFontSize
           }
         }
+      }
+    case DELETE_INVITATION_TEXTBOX:
+      return {
+        ...state,
+        'text': {}
+        // 'text': state['text'].filter((localTextId) => localTextId !== textId)
       }
     default:
       return {
