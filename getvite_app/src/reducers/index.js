@@ -32,7 +32,8 @@ function invitation (state={}, action) {
           [textId]: {
             'text': invitationText,
             position: invitationTextPosition,
-            fontSize: invitationTextFontSize
+            fontSize: invitationTextFontSize,
+            isDelete: false
           }
         }
       }
