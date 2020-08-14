@@ -31,10 +31,11 @@ export function addInvitationText ( { textId, invitationText, invitationTextPosi
   }
 }
 
-export function deleteInvitationTextbox ( {textId } ) {
+export function deleteInvitationTextbox ( {textId, isDeleted } ) {
   return {
     type: DELETE_INVITATION_TEXTBOX,
     textId,
+    isDeleted,
   }
 }
 

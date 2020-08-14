@@ -39,11 +39,12 @@ class InvitationText extends Component {
       previewText: !this.state.previewText
     }))
   }
-  handleDeleteItem(id){
+  handleDeleteTextbox(id){
     var doubleCheck = true
 
     if (doubleCheck){
-      this.props.deleteInvitationTextbox( { textId: id } )
+      // const timeToDelete = true
+      this.props.deleteInvitationTextbox( { textId: id, isDelete: true } )
     }
   }
   render() {
@@ -73,7 +74,7 @@ class InvitationText extends Component {
           <div className="InvitationText-container">
             <div>
               <MdDeleteForever
-                onClick={(event => this.handleDeleteItem(this.props.textId))}
+                onClick={(event => this.handleDeleteTextbox(this.props.textId))}
               />
             </div>
             <textarea 

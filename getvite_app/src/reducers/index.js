@@ -11,6 +11,7 @@ import {
 
 function invitation (state={}, action) {
   const { textId, invitationText, invitationTextPosition, invitationTextFontSize } = action
+  const { isDelete } = action
   switch (action.type) {
     case ADD_INVITATION: 
       const { invitation } = action
@@ -73,7 +74,13 @@ function invitation (state={}, action) {
     case DELETE_INVITATION_TEXTBOX:
       return {
         ...state,
-        'text': {}
+        'text': {
+          ...state['text'],
+          [textId]:{
+            ...state['text'][textId],
+            isDelete: true // only works with true -> why not with Const?
+          }
+        }
         // 'text': state['text'].filter((localTextId) => localTextId !== textId)
       }
     default:
