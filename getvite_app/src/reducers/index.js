@@ -33,7 +33,8 @@ function invitation (state={}, action) {
             'text': invitationText,
             position: invitationTextPosition,
             fontSize: invitationTextFontSize,
-            isDeleted: false
+            isDeleted: false,
+            textId: textId
           }
         }
       }
@@ -81,7 +82,6 @@ function invitation (state={}, action) {
             isDeleted: isDeleted
           }
         }
-        // 'text': state['text'].filter((localTextId) => localTextId !== textId)
       }
     default:
       return {
