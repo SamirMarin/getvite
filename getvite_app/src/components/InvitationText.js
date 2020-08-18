@@ -43,8 +43,7 @@ class InvitationText extends Component {
     var doubleCheck = true
 
     if (doubleCheck){
-      // const timeToDelete = true
-      this.props.deleteInvitationTextbox( { textId: id, isDelete: true } )
+      this.props.deleteInvitationTextbox( { textId: id, isDeleted: true } )
     }
   }
   render() {
