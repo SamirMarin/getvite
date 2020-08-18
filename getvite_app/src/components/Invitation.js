@@ -56,7 +56,7 @@ class Invitation extends Component {
              > 
              <RiAddBoxLine
                className="Invitation-addbox"
-               onClick={(event => this.handleMakeNewText(this.props.numberText + 1, 5+12*this.props.numberText, "20"))}
+               onClick={(event => this.handleMakeNewText(this.props.numberText, 5+12*this.props.numberText, "20"))}
               />
             </div>
            </div>
