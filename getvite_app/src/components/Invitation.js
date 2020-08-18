@@ -92,7 +92,8 @@ class Invitation extends Component {
 function mapStateToProps({ invitation }, props ) {
   return {
     photo: invitation.photo,
-    text: invitation.text ? Object.keys(invitation.text) : [],
+    text: invitation.text ? ((Object.values(invitation.text))
+    .filter(text => !text.isDeleted)).map(text => text.textId) : [],
     numberText: invitation.text ? Object.keys(invitation.text).length : 0,
     textObjects: invitation.text ? Object.values(invitation.text) : [],
   }
