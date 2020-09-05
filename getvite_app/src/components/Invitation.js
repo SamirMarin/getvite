@@ -93,7 +93,8 @@ function mapStateToProps({ invitation }, props ) {
   return {
     photo: invitation.photo,
     username: invitation.user ? invitation.user.username: '',
-    text: invitation.text ? Object.keys(invitation.text) : [],
+    text: invitation.text ? ((Object.values(invitation.text))
+    .filter(text => !text.isDeleted)).map(text => text.textId) : [],
     numberText: invitation.text ? Object.keys(invitation.text).length : 0,
     textObjects: invitation.text ? Object.values(invitation.text) : [],
   }
