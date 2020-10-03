@@ -42,7 +42,18 @@ class Invitations:
         count = 0
         print(invitation_text)
         for invitation_text_row in invitation_text:
-            updated = session.query(InvitationText).\
+            if invitation_text_row['isDeleted']:
+                deleted = session.query(InvitationText).\
+                    filter(InvitationText.invitation_admin_user==user).\
+                    filter(InvitationText.text_id==count).\
+                    delete()
+                # Check if deleted was successfull
+                # if not, print error not successfull
+                if deleted == 0:
+                    print("ERROR: Deletion failed")
+
+            else:
+                updated = session.query(InvitationText).\
                     filter(InvitationText.invitation_admin_user==user).\
                     filter(InvitationText.text_id==count).\
                     update({
@@ -50,14 +61,14 @@ class Invitations:
                         'text_position': invitation_text_row['position'],
                         'font_size': invitation_text_row['fontSize']
                         })
-            if updated == 0:
-                invitation_text_to_save.append(
-                        InvitationText(
-                            invitation_admin_user=user,
-                            text_id=count,
-                            text=invitation_text_row['text'],
-                            text_position=invitation_text_row['position'],
-                            font_size=invitation_text_row['fontSize']
+                if updated == 0:
+                    invitation_text_to_save.append(
+                            InvitationText(
+                                invitation_admin_user=user,
+                                text_id=count,
+                                text=invitation_text_row['text'],
+                                text_position=invitation_text_row['position'],
+                                font_size=invitation_text_row['fontSize']
                             )
                         )
             count += 1
