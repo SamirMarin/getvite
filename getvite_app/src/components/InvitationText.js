@@ -106,7 +106,7 @@ class InvitationText extends Component {
 
 function mapStateToProps({ invitation }, props ){
   return {
-    text: props.textId ? invitation.text[props.textId] : {text: 'This is your text', position: 30}
+    text: props.textId + 1 ? invitation.text[props.textId] : {text: 'This is your text', position: 30}
   }
 }
 
