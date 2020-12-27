@@ -14,13 +14,13 @@ class Invitations:
     def get_invitation_by_admin_user(self, session, user):
         invitation_text_query_array = session.query(InvitationText).filter(InvitationText.invitation_admin_user==user).all()
         size = len(invitation_text_query_array)
-        invitation_text = [None] * size
+        invitation_text = []
         for invitation_text_row in invitation_text_query_array:
-            invitation_text[invitation_text_row.text_id] = {
+            invitation_text.append({
                     "text": invitation_text_row.text,
                     "position": invitation_text_row.text_position,
                     "fontSize": invitation_text_row.font_size
-                    }
+                    })
 
         invitations = []
         for invitation in session.query(Invitation).filter(Invitation.admin_user==user).all():
@@ -42,14 +42,20 @@ class Invitations:
         count = 0
         print(invitation_text)
         for invitation_text_row in invitation_text:
-            updated = session.query(InvitationText).\
-                    filter(InvitationText.invitation_admin_user==user).\
-                    filter(InvitationText.text_id==count).\
-                    update({
-                        'text': invitation_text_row['text'],
-                        'text_position': invitation_text_row['position'],
-                        'font_size': invitation_text_row['fontSize']
-                        })
+            if invitation_text_row['isDeleted']:
+                updated = session.query(InvitationText).\
+                        filter(InvitationText.invitation_admin_user==user).\
+                        filter(InvitationText.text_id==count).\
+                        delete(synchronize_session=False)
+            else:
+                updated = session.query(InvitationText).\
+                        filter(InvitationText.invitation_admin_user==user).\
+                        filter(InvitationText.text_id==count).\
+                        update({
+                            'text': invitation_text_row['text'],
+                            'text_position': invitation_text_row['position'],
+                            'font_size': invitation_text_row['fontSize']
+                            })
             if updated == 0:
                 invitation_text_to_save.append(
                         InvitationText(
