@@ -8,6 +8,7 @@ import {
   ADD_INVITATION_TEXT_POSITION,
   ADD_INVITATION_TEXT_FONTSIZE,
   DELETE_INVITATION_TEXTBOX,
+  DELETE_INVITATION_TEXTBOXES,
 } from '../actions'
 
 function invitation (state={}, action) {
@@ -91,6 +92,12 @@ function invitation (state={}, action) {
             ...state['text'][textId],
             isDeleted: isDeleted
           }
+        }
+      }
+    case DELETE_INVITATION_TEXTBOXES:
+      return {
+        ...state,
+        'text': {
         }
       }
     default:

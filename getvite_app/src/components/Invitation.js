@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import { Route, Link, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import './css/Invitation.css';
-import { addInvitationText } from '../actions'
+import { addInvitationText, deleteInvitationTextboxes } from '../actions'
 import InvitationText from './InvitationText';
 import { RiAddBoxLine, RiSaveLine, RiEditBoxLine } from 'react-icons/ri'
 import * as Api from '../utils/api'
+import * as ApiController from '../utils/apiController'
 
 class Invitation extends Component {
   state = {
@@ -24,6 +25,8 @@ class Invitation extends Component {
             ...this.state,
             edit: newEditState
           }))
+          this.props.deleteInvitationTextboxes()
+          this.props.fetchInvitation(user)
         } else{
           console.log("Error Saving to DB")
         }
@@ -56,7 +59,7 @@ class Invitation extends Component {
              > 
              <RiAddBoxLine
                className="Invitation-addbox"
-               onClick={(event => this.handleMakeNewText(this.props.numberText + 1, 5+12*this.props.numberText, "20"))}
+               onClick={(event => this.handleMakeNewText("new_text_box" + (this.props.numberText + 1).toString(), 5, "20"))}
               />
             </div>
            </div>
@@ -103,6 +106,8 @@ function mapStateToProps({ invitation }, props ) {
 function mapDispatchToProps( dispatch ){
   return {
     addInvitationText: (data) => dispatch(addInvitationText(data)),
+    fetchInvitation: (data) => dispatch(ApiController.fetchInvitation(data)),
+    deleteInvitationTextboxes: () => dispatch(deleteInvitationTextboxes()),
   }
 }
 
