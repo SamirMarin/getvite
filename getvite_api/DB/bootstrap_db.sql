@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS invitations (
 
 CREATE TABLE IF NOT EXISTS invitation_text (
   invitation_admin_user STRING REFERENCES invitations(admin_user) ON DELETE CASCADE, 
-  text_id INT,
+  text_id UUID DEFAULT gen_random_uuid(),
   text STRING,
   text_position INT,
   font_size STRING,

@@ -6,6 +6,7 @@ export const ADD_INVITATION_TEXT_TEXT = 'ADD_INVITATION_TEXT_TEXT'
 export const ADD_INVITATION_TEXT_POSITION = 'ADD_INVITATION_TEXT_POSITION'
 export const ADD_INVITATION_TEXT_FONTSIZE = 'ADD_INVITATION_TEXT_FONTSIZE'
 export const DELETE_INVITATION_TEXTBOX = 'DELETE INVITATION TEXTBOX'
+export const DELETE_INVITATION_TEXTBOXES = 'DELETE_INVITATION_TEXTBOXES'
 
 
 export function addInvitation ({ invitation }) {
@@ -45,6 +46,12 @@ export function deleteInvitationTextbox ( {textId, isDeleted } ) {
     type: DELETE_INVITATION_TEXTBOX,
     textId,
     isDeleted,
+  }
+}
+
+export function deleteInvitationTextboxes () {
+  return {
+    type: DELETE_INVITATION_TEXTBOXES,
   }
 }
 

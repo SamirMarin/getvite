@@ -19,7 +19,8 @@ class Invitations:
             invitation_text.append({
                     "text": invitation_text_row.text,
                     "position": invitation_text_row.text_position,
-                    "fontSize": invitation_text_row.font_size
+                    "fontSize": invitation_text_row.font_size,
+                    "textId": invitation_text_row.text_id
                     })
 
         invitations = []
@@ -39,34 +40,32 @@ class Invitations:
 
     def save_invitation_text(self, session, user, invitation_text):
         invitation_text_to_save = []
-        count = 0
         print(invitation_text)
         for invitation_text_row in invitation_text:
-            if invitation_text_row['isDeleted']:
+            updated = 0
+            if "new_text_box" not in invitation_text_row['textId'] and invitation_text_row['isDeleted']:
                 updated = session.query(InvitationText).\
                         filter(InvitationText.invitation_admin_user==user).\
-                        filter(InvitationText.text_id==count).\
+                        filter(InvitationText.text_id==uuid.UUID(invitation_text_row['textId']).hex).\
                         delete(synchronize_session=False)
-            else:
+            elif "new_text_box" not in invitation_text_row['textId']:
                 updated = session.query(InvitationText).\
                         filter(InvitationText.invitation_admin_user==user).\
-                        filter(InvitationText.text_id==count).\
+                        filter(InvitationText.text_id==uuid.UUID(invitation_text_row['textId']).hex).\
                         update({
                             'text': invitation_text_row['text'],
                             'text_position': invitation_text_row['position'],
                             'font_size': invitation_text_row['fontSize']
                             })
-            if updated == 0:
+            if not invitation_text_row['isDeleted'] and updated == 0:
                 invitation_text_to_save.append(
                         InvitationText(
                             invitation_admin_user=user,
-                            text_id=count,
                             text=invitation_text_row['text'],
                             text_position=invitation_text_row['position'],
                             font_size=invitation_text_row['fontSize']
                             )
                         )
-            count += 1
         session.add_all(invitation_text_to_save)
 
     def save_invitation_text_transaction(self, user, invitation_text):
