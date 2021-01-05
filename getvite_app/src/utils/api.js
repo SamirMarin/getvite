@@ -1,3 +1,4 @@
+// This is backend server
 const api = "http://localhost:5000/api"
 let token = localStorage.token
 

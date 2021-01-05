@@ -20,6 +20,7 @@ def save_invitation_text(admin_user):
         abort(400)
     texts_array = request.json['texts']
     app.logger.info(texts_array)
+    # create invitations controller
     invitations = Invitations()
     save_invitation_text_res = invitations.save_invitation_text_transaction(admin_user, texts_array)
     app.logger.info(save_invitation_text_res)
