@@ -8,6 +8,7 @@ class Invitations:
     def __init__(self):
         #insecure connection
         connect_args = {'sslmode': 'disable'}
+        # See bootstrap for details on arguments; connect args -> extra things you can add for security
         dbconnection = DatabaseConnection('croach_node_1', 'getvite', 'getvite_user', '26257', connect_args)
         self.sessionmaker = dbconnection.sessionmaker
 
@@ -42,7 +43,13 @@ class Invitations:
         count = 0
         print(invitation_text)
         for invitation_text_row in invitation_text:
-            updated = session.query(InvitationText).\
+            if invitation_text_row['isDeleted']:
+                updated = session.query(InvitationText).\
+                    filter(InvitationText.invitation_admin_user==user).\
+                    filter(InvitationText.text_id==count).\
+                    delete(synchronize_session='evaluate')
+            else:
+                updated = session.query(InvitationText).\
                     filter(InvitationText.invitation_admin_user==user).\
                     filter(InvitationText.text_id==count).\
                     update({
