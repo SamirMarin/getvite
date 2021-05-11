@@ -9,7 +9,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "elliptic": "^6.5.3",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "node-fetch": "^2.6.1",
     "node-forge": "^0.10.0",
     "node-notifier": "^9.0.0",
