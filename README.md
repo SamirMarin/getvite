@@ -28,3 +28,10 @@ to tear down the database named volumes with containers
 to connect to cockroach sql
 
 `docker exec -it croach_node_1 cockroach sql --insecure`
+
+
+## ENVIRONMENT VARIABLES REQUIRED
+`REACT_APP_OKTA_DOMAIN` ---> okta app domain required for login page to work, you can get this by signing up for the free okta dev account
+`REACT_APP_OKTA_CLIENTID` ---> okta client id required for login page to work, you can get his by signing up for the free okta dev account
+
+You can set these using a .env file
